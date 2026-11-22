@@ -1,0 +1,40 @@
+{
+  "id": "./",
+  "name": "海洋之星 英文學習",
+  "short_name": "海洋之星英文",
+  "description": "海洋之星 英文學習 App：黏土風互動英文單字卡片、聽音辨字與閃電快選闖關遊戲、成就獎勵與 A4 練習卷，支援完整離線使用。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F3F0FA",
+  "theme_color": "#7C5DFA",
+  "lang": "zh-Hant",
+  "categories": ["education", "kids"],
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

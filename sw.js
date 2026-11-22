@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ocean-star-eng-pwa-v6';
+const CACHE_NAME = 'ocean-star-eng-pwa-v7';
 const ASSETS = [
   './',
   './index.html',

@@ -580,29 +580,135 @@
     }
     .quick-4-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
     }
     .quick-tile {
-      background: var(--surface-soft);
-      border: 1.5px solid var(--line);
-      border-radius: 20px;
-      padding: 12px 8px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      padding: 13px 15px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 8px;
+      text-align: left;
+      gap: 13px;
       cursor: pointer;
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
-      box-shadow: 0 6px 14px -5px rgba(108, 77, 230, 0.1), inset 0 2px 4px #fff;
+      border: 1.5px solid rgba(255, 255, 255, 0.92);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, filter 0.2s;
+      box-shadow: 0 10px 22px -8px rgba(76, 56, 150, 0.18), inset 0 3px 6px rgba(255, 255, 255, 0.95), inset 0 -4px 8px rgba(76, 56, 150, 0.08);
+    }
+    .quick-tile::after {
+      content: "";
+      position: absolute;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      right: -28px;
+      top: -32px;
+      background: radial-gradient(circle, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
     }
     .quick-tile:hover {
-      transform: translateY(-4px);
-      background: #FFFFFF;
-      box-shadow: var(--clay-card);
+      transform: translateY(-4px) scale(1.015);
+      box-shadow: 0 16px 28px -8px rgba(76, 56, 150, 0.24), inset 0 3px 6px rgba(255, 255, 255, 0.98);
     }
-    .quick-tile .clay-icon-box { width: 52px; height: 52px; font-size: 24px; }
-    .quick-tile span { font-size: 12px; font-weight: 900; color: var(--ink); }
+    .quick-tile:active {
+      transform: translateY(0) scale(0.985);
+    }
+    .quick-tile-learn {
+      background: linear-gradient(145deg, #F3EEFF 0%, #DFD4FF 100%);
+      --qt-title: #4325B8;
+      --qt-desc: #6147B8;
+      --qt-icon-bg: linear-gradient(145deg, #987BFF, #6C4CE6);
+      --qt-icon-shadow: rgba(108, 76, 230, 0.36);
+      --qt-arrow-bg: rgba(108, 76, 230, 0.14);
+    }
+    .quick-tile-listen {
+      background: linear-gradient(145deg, #FFF7DC 0%, #FDE293 100%);
+      --qt-title: #9A4809;
+      --qt-desc: #B45D18;
+      --qt-icon-bg: linear-gradient(145deg, #FBBF24, #F59E0B);
+      --qt-icon-shadow: rgba(245, 158, 11, 0.38);
+      --qt-arrow-bg: rgba(180, 83, 9, 0.14);
+    }
+    .quick-tile-flash {
+      background: linear-gradient(145deg, #E2FFF7 0%, #B0F3DF 100%);
+      --qt-title: #0B6B5F;
+      --qt-desc: #158074;
+      --qt-icon-bg: linear-gradient(145deg, #34D399, #0D9488);
+      --qt-icon-shadow: rgba(13, 148, 136, 0.36);
+      --qt-arrow-bg: rgba(13, 148, 136, 0.14);
+    }
+    .quick-tile-print {
+      background: linear-gradient(145deg, #FFEDF5 0%, #FFCDE3 100%);
+      --qt-title: #B3195B;
+      --qt-desc: #BE2E6D;
+      --qt-icon-bg: linear-gradient(145deg, #F472B6, #EC4899);
+      --qt-icon-shadow: rgba(236, 72, 153, 0.36);
+      --qt-arrow-bg: rgba(219, 39, 119, 0.14);
+    }
+    .quick-tile-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 19px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--qt-icon-bg);
+      box-shadow: 0 10px 18px -5px var(--qt-icon-shadow), inset 0 3px 5px rgba(255, 255, 255, 0.55), inset 0 -4px 7px rgba(0, 0, 0, 0.14);
+      position: relative;
+      z-index: 1;
+    }
+    .quick-tile-icon svg {
+      width: 40px;
+      height: 40px;
+      display: block;
+      filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.18));
+    }
+    .quick-tile-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      position: relative;
+      z-index: 1;
+    }
+    .quick-tile-title {
+      font-size: 19px;
+      font-weight: 900;
+      line-height: 1.18;
+      letter-spacing: 0.02em;
+      color: var(--qt-title);
+      white-space: nowrap;
+    }
+    .quick-tile-desc {
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--qt-desc);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .quick-tile-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--qt-arrow-bg);
+      color: var(--qt-title);
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+    }
 
     .daily-goal-card {
       border-radius: var(--radius-xl);
@@ -1999,14 +2105,72 @@
       grid-template-columns: 1fr;
     }
     html[data-device-mode="mobile-portrait"] .quick-4-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
+    }
+    html[data-device-mode="mobile-portrait"] .quick-tile {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 14px 10px 13px;
+      gap: 9px;
+      border-radius: 22px;
+    }
+    html[data-device-mode="mobile-portrait"] .quick-tile-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: 21px;
+    }
+    html[data-device-mode="mobile-portrait"] .quick-tile-icon svg {
+      width: 44px;
+      height: 44px;
+    }
+    html[data-device-mode="mobile-portrait"] .quick-tile-body {
+      align-items: center;
+      gap: 2px;
+    }
+    html[data-device-mode="mobile-portrait"] .quick-tile-title {
+      font-size: 19px;
+    }
+    html[data-device-mode="mobile-portrait"] .quick-tile-desc {
+      font-size: 12px;
+    }
+    html[data-device-mode="mobile-portrait"] .quick-tile-arrow {
+      display: none;
+    }
+    html[data-device-mode="mobile-landscape"] .quick-4-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+    html[data-device-mode="mobile-landscape"] .quick-tile {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10px 6px;
+      gap: 6px;
+      border-radius: 18px;
+    }
+    html[data-device-mode="mobile-landscape"] .quick-tile-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+    }
+    html[data-device-mode="mobile-landscape"] .quick-tile-icon svg {
+      width: 34px;
+      height: 34px;
+    }
+    html[data-device-mode="mobile-landscape"] .quick-tile-title {
+      font-size: 15px;
+    }
+    html[data-device-mode="mobile-landscape"] .quick-tile-desc,
+    html[data-device-mode="mobile-landscape"] .quick-tile-arrow {
+      display: none;
     }
     html[data-device-mode="mobile-portrait"] .badges-grid {
       grid-template-columns: repeat(2, 1fr);
     }
     html[data-device-mode="mobile-portrait"] .welcome-card {
-      padding: 18px 16px;
+      padding: 16px 14px;
     }
     html[data-device-mode="mobile-portrait"] .search-box {
       width: 118px;
@@ -2292,21 +2456,70 @@
             <p class="welcome-sub" id="homeVocabSummary">目前題庫已載入 0 個精選英文單字，隨時可聽發音、玩闖關與印考卷！</p>
 
             <div class="quick-4-grid">
-              <button type="button" class="quick-tile" onclick="app.switchMainView('learn')">
-                <div class="clay-icon-box" style="background:linear-gradient(145deg,#EDE9FE,#DDD6FE);">📘</div>
-                <span>單字學習</span>
+              <button type="button" class="quick-tile quick-tile-learn" onclick="app.switchMainView('learn')">
+                <div class="quick-tile-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <rect x="7" y="8" width="34" height="32" rx="8" fill="#FFFFFF" fill-opacity="0.96"/>
+                    <path d="M24 10V38" stroke="#D8CEFF" stroke-width="2.6" stroke-linecap="round"/>
+                    <path d="M12.5 16.5H19.5M12.5 22.5H19.5M12.5 28.5H17.5" stroke="#6C4CE6" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M28.5 16.5H35.5M28.5 22.5H35.5M28.5 28.5H33.5" stroke="#8B6CF6" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M31 6.5H37.5V16L34.25 13.4L31 16V6.5Z" fill="#FBBF24"/>
+                  </svg>
+                </div>
+                <div class="quick-tile-body">
+                  <span class="quick-tile-title">單字學習</span>
+                  <span class="quick-tile-desc">大字閃卡與發音</span>
+                </div>
+                <span class="quick-tile-arrow" aria-hidden="true">›</span>
               </button>
-              <button type="button" class="quick-tile" onclick="app.quickStartGame('listening')">
-                <div class="clay-icon-box" style="background:linear-gradient(145deg,#FEF3C7,#FDE68A);">🎧</div>
-                <span>聽音辨字</span>
+
+              <button type="button" class="quick-tile quick-tile-listen" onclick="app.quickStartGame('listening')">
+                <div class="quick-tile-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M11 26V23C11 15.82 16.82 10 24 10C31.18 10 37 15.82 37 23V26" stroke="#FFFFFF" stroke-width="5.2" stroke-linecap="round"/>
+                    <rect x="7" y="23" width="10" height="15" rx="5" fill="#FFFFFF"/>
+                    <rect x="31" y="23" width="10" height="15" rx="5" fill="#FFFFFF"/>
+                    <rect x="11" y="26.5" width="3.5" height="8" rx="1.75" fill="#F59E0B"/>
+                    <rect x="33.5" y="26.5" width="3.5" height="8" rx="1.75" fill="#F59E0B"/>
+                    <path d="M21 27C22.4 25.4 25.6 25.4 27 27" stroke="#FFFBEB" stroke-width="2.6" stroke-linecap="round"/>
+                    <circle cx="24" cy="32" r="2.2" fill="#FFFBEB"/>
+                  </svg>
+                </div>
+                <div class="quick-tile-body">
+                  <span class="quick-tile-title">聽音辨字</span>
+                  <span class="quick-tile-desc">聽發音選中文</span>
+                </div>
+                <span class="quick-tile-arrow" aria-hidden="true">›</span>
               </button>
-              <button type="button" class="quick-tile" onclick="app.quickStartGame('flash')">
-                <div class="clay-icon-box" style="background:linear-gradient(145deg,#CCFBF1,#99F6E4);">⚡</div>
-                <span>閃電快選</span>
+
+              <button type="button" class="quick-tile quick-tile-flash" onclick="app.quickStartGame('flash')">
+                <div class="quick-tile-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M27.5 6.5L12.5 26.2C11.7 27.25 12.45 28.75 13.75 28.75H22.8L20.3 41.2C20.05 42.45 21.6 43.25 22.45 42.3L36.2 22.8C36.98 21.72 36.2 20.25 34.88 20.25H26.2L29.7 8.15C30.05 6.9 28.32 5.45 27.5 6.5Z" fill="#FFFFFF"/>
+                    <circle cx="36" cy="11" r="2.6" fill="#FDE047"/>
+                    <circle cx="11.5" cy="36.5" r="2.1" fill="#FDE047"/>
+                  </svg>
+                </div>
+                <div class="quick-tile-body">
+                  <span class="quick-tile-title">閃電快選</span>
+                  <span class="quick-tile-desc">連擊衝高分</span>
+                </div>
+                <span class="quick-tile-arrow" aria-hidden="true">›</span>
               </button>
-              <button type="button" class="quick-tile" onclick="app.openWorksheetSubtab('worksheet')">
-                <div class="clay-icon-box" style="background:linear-gradient(145deg,#FCE7F3,#FBCFE8);">📝</div>
-                <span>列印練習卷</span>
+
+              <button type="button" class="quick-tile quick-tile-print" onclick="app.openWorksheetSubtab('worksheet')">
+                <div class="quick-tile-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <rect x="9" y="8" width="25" height="32" rx="6.5" fill="#FFFFFF" fill-opacity="0.97"/>
+                    <path d="M15 16.5H28M15 23H28M15 29.5H23" stroke="#EC4899" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M35.5 18.2L40.3 23L29.6 33.7L24 34.5L24.8 28.9L35.5 18.2Z" fill="#FBBF24" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="quick-tile-body">
+                  <span class="quick-tile-title">列印練習卷</span>
+                  <span class="quick-tile-desc">A4 考卷與造句</span>
+                </div>
+                <span class="quick-tile-arrow" aria-hidden="true">›</span>
               </button>
             </div>
           </div>
